@@ -6,9 +6,9 @@
 
 Name:    %{pkg_name}
 Summary: Utility to clean up and pretty print HTML/XHTML/XML
-Version: 5.4.0
+Version: 5.8.0
 # Doing release_prefix this way for Release allows for OBS-proof versioning, See EA-4544 for more details
-%define release_prefix 3
+%define release_prefix 1
 Release: %{release_prefix}%{?dist}.cpanel
 Vendor: cPanel, Inc.
 
@@ -16,7 +16,7 @@ Group:   Applications/Text
 License: W3C
 URL:     http://tidy.sourceforge.net/
 
-Source0: https://github.com/htacg/tidy-html5/releases/download/5.4.0/tidy-html5-5.4.0.tar.gz
+Source0: https://github.com/htacg/tidy-html5/archive/refs/tags/5.8.0.tar.gz
 
 BuildRequires: cmake
 %if 0%{?rhel} >= 8
@@ -75,6 +75,9 @@ make install DESTDIR=$RPM_BUILD_ROOT
 %{_prefix}/include/*.h
 
 %changelog
+* Thu Jul 03 2025 Cory McIntire <cory.mcintire@webpros.com> - 5.8.0-1
+- EA-12999: Update libtidy from 5.4.0 to 5.8.0
+
 * Tue May 09 2023 Brian Mendoza <brian.mendoza@cpanel.net> - 5.4.0-3
 - ZC-10936: Clean up Makefile and remove debug-package-nil
 
