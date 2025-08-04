@@ -8,7 +8,7 @@ Name:    %{pkg_name}
 Summary: Utility to clean up and pretty print HTML/XHTML/XML
 Version: 5.8.0
 # Doing release_prefix this way for Release allows for OBS-proof versioning, See EA-4544 for more details
-%define release_prefix 1
+%define release_prefix 2
 Release: %{release_prefix}%{?dist}.cpanel
 Vendor: cPanel, Inc.
 
@@ -19,6 +19,9 @@ URL:     http://tidy.sourceforge.net/
 Source0: https://github.com/htacg/tidy-html5/archive/refs/tags/5.8.0.tar.gz
 
 BuildRequires: cmake
+BuildRequires: libcurl
+BuildRequires: libcurl-devel
+
 %if 0%{?rhel} >= 8
 BuildRequires: brotli
 BuildRequires: libnghttp2
@@ -75,6 +78,9 @@ make install DESTDIR=$RPM_BUILD_ROOT
 %{_prefix}/include/*.h
 
 %changelog
+* Tue Jul 29 2025 Dan Muey <daniel.muey@webpros.com> - 5.8.0-2
+- EA4-52: Address `libcurl.so.4` missing on Alma 10
+
 * Thu Jul 03 2025 Cory McIntire <cory.mcintire@webpros.com> - 5.8.0-1
 - EA-12999: Update libtidy from 5.4.0 to 5.8.0
 
